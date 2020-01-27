@@ -2,13 +2,14 @@
 PROGS:=$(filter-out lib%,$(patsubst %.c,%,$(wildcard *.c)))
 CC:=gcc
 # -pthread
-CFLAGS:=-D_GNU_SOURCE -D_FORTIFY_SOURCE=2 -g -c -O2 -std=gnu99
+CFLAGS:=-D_GNU_SOURCE -D_FORTIFY_SOURCE=2 -g -c -O2 -std=gnu99 -Wno-unused-function
 # -pthread -lm
 LDFLAGS:=
 
 .PHONY: all
 all: $(PROGS)
 	@:
+	@echo -n $(warning "-Wno-unused-function in use!")
 
 # Cancel the default rule for building 'foo' from 'foo.c'
 % : %.c
